@@ -16,12 +16,13 @@ type Game struct {
     currentMove Player
 }
 
-func (game *Game) changeTurn() {
-    if game.currentMove == LIGHT {
-        game.currentMove = DARK
-    } else if game.currentMove == DARK {
-        game.currentMove = LIGHT
+func NewGame(boardSize int) Game {
+    board := make([][]uint8, boardSize)
+    for i := range board {
+        board[i] = make([]uint8, boardSize)
     }
+    newGame := Game{board: board, currentMove: DARK}
+    return newGame
 }
 
 func (game *Game) printGame() {
@@ -39,11 +40,18 @@ func (game *Game) printGame() {
     fmt.Printf("\n")
 }
 
-func NewGame(boardSize int) Game {
-    board := make([][]uint8, boardSize)
-    for i := range board {
-        board[i] = make([]uint8, boardSize)
+func (game *Game) changeTurn() {
+    if game.currentMove == LIGHT {
+        game.currentMove = DARK
+    } else if game.currentMove == DARK {
+        game.currentMove = LIGHT
     }
-    newGame := Game{board: board, currentMove: DARK}
-    return newGame
+}
+
+func (game *Game) placePiece(row int, col int, player Player) {
+    if player == LIGHT {
+        game.board[row][col] = 1
+    } else if player == DARK {
+        game.board[row][col] = 2
+    }
 }

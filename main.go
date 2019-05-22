@@ -10,6 +10,11 @@ func main() {
     boardSize := promptForBoardSize()
     game := NewGame(boardSize)
     game.printGame()
+    row := promptForRow()
+    col := promptForCol()
+    game.placePiece(row, col, game.currentMove)
+    game.changeTurn()
+    game.printGame()
 }
 
 func promptForBoardSize() int {
@@ -25,4 +30,32 @@ func promptForBoardSize() int {
         log.Fatal(err)
     }
     return int(boardSizeAsInt)
+}
+
+func promptForRow() int {
+    fmt.Printf("Enter row: ")
+    var inputtedRow string
+    _, err := fmt.Scanf("%v", &inputtedRow)
+    if err != nil {
+        log.Fatal(err)
+    }
+    rowAsInt, err := strconv.ParseInt(inputtedRow, 10, 8)
+    if err != nil {
+        log.Fatal(err)
+    }
+    return int(rowAsInt)
+}
+
+func promptForCol() int {
+    fmt.Printf("Enter col: ")
+    var inputtedCol string
+    _, err := fmt.Scanf("%v", &inputtedCol)
+    if err != nil {
+        log.Fatal(err)
+    }
+    colAsInt, err := strconv.ParseInt(inputtedCol, 10, 8)
+    if err != nil {
+        log.Fatal(err)
+    }
+    return int(colAsInt)
 }
