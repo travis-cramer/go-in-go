@@ -14,7 +14,7 @@ const (
 type Game struct {
     board [][]uint8
     currentMove Player
-    gameBoardSize int //added board size variable for testing out of scope moves
+    gameBoardSize int 
 }
 
 func NewGame(boardSize int) Game {

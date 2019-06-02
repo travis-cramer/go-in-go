@@ -37,7 +37,6 @@ func main() {
 func promptForBoardSize() int {
     fmt.Printf("Board size is nxn, and must be odd. Enter n: ")
     var inputtedBoardSize string
-    var findOdd int
     _, err := fmt.Scanf("%v", &inputtedBoardSize)
     if err != nil {
         log.Fatal(err)
@@ -47,7 +46,7 @@ func promptForBoardSize() int {
         fmt.Println("Error parsing input. Ensure board size is a valid integer.")
         return int(0)
     }
-    findOdd = oddTester(int(boardSizeAsInt))
+    findOdd := oddTester(int(boardSizeAsInt))
     return findOdd
     
 }
