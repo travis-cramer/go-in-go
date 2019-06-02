@@ -12,11 +12,12 @@ func main() {
         boardSize = promptForBoardSize()
     }
     game := NewGame(boardSize)
+    game.addBoardStars()
     game.printGame()
 
     gameOn := 1
-    piecePlaced := false
     for gameOn == 1 { //loop for multiple moves
+        piecePlaced := false
         for piecePlaced == false { //loop for piece placement error
             row := 0
             for row == 0 {
@@ -36,7 +37,7 @@ func main() {
 func promptForBoardSize() int {
     fmt.Printf("Board size is nxn, and must be odd. Enter n: ")
     var inputtedBoardSize string
-    var oddTester int64
+    var findOdd int
     _, err := fmt.Scanf("%v", &inputtedBoardSize)
     if err != nil {
         log.Fatal(err)
@@ -46,13 +47,9 @@ func promptForBoardSize() int {
         fmt.Println("Error parsing input. Ensure board size is a valid integer.")
         return int(0)
     }
-    oddTester = boardSizeAsInt % 2
-    if oddTester == 1 {
-        return int(boardSizeAsInt)
-    } else {
-        fmt.Println("Error, the board must have an odd number of rows and columns.")
-        return int(0)
-    }
+    findOdd = oddTester(int(boardSizeAsInt))
+    return findOdd
+    
 }
 
 func promptForRow() int {
@@ -83,4 +80,14 @@ func promptForCol() int {
         return int(0)
     }
     return int(colAsInt)
+}
+
+func oddTester(testInput int) int {
+    isOdd := testInput % 2
+    if isOdd == 1 {
+        return int(testInput)
+    } else {
+        fmt.Println("Error, the board must have an odd number of rows and columns.")
+        return int(0)
+    }
 }
