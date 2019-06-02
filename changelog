@@ -1,0 +1,16 @@
+-- added boardStars function
+    when used in the NewGame function, it adds 8's in place of stars in the center of the board, and at the corners of large enough boards
+    
+-- boardSize error handling
+    -Removed log.Fatal(err) for non integer input
+    -Added return 0 (int) on failures fo invalid inputs
+    
+-- Main() edits
+    -Added loop for errors in row/column selections for placing pieces
+    -Added loop for multiple turns for each player
+    
+-- Game struct
+    -Added gameBoardSize property for testing against out of bounds piece placements
+    
+-- placePiece()
+    -Added error handling for placing pieces off of the game board
