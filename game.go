@@ -14,7 +14,7 @@ const (
 type Game struct {
     board [][]uint8
     currentMove Player
-    gameBoardSize int 
+    gameBoardSize int
 }
 
 func NewGame(boardSize int) Game {
@@ -50,13 +50,15 @@ func (game *Game) addBoardStars() {
 }
 
 func (game *Game) printGame() {
-    row := 1
     fmt.Printf("current move: %v\n", game.currentMove)
+
+    row := 1
     for i := range game.board {
         fmt.Printf("%v  %v\n", game.board[i], row)
         row++
     }
     fmt.Printf("\n")
+
     for i := 1; i < row; i++ {
         iAsString := strconv.Itoa(i)
         fmt.Printf(" %v", iAsString[len(iAsString)-1:])
@@ -78,10 +80,10 @@ func (game *Game) placePiece(row int, col int, player Player) bool {
         return false
     } else {
         if player == LIGHT {
-            game.board[row][col] = 1
+            game.board[row - 1][col - 1] = 1
             return true
         } else if player == DARK {
-            game.board[row][col] = 2
+            game.board[row - 1][col - 1] = 2
             return true
         }
     }
