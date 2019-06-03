@@ -16,16 +16,16 @@ func main() {
     game.printGame()
 
     gameOn := 1
-    for gameOn == 1 { //loop for multiple moves
+    for gameOn == 1 {
         piecePlaced := false
-        for piecePlaced == false { //loop for piece placement error
+        for piecePlaced == false {
             row := 0
             for row == 0 {
-                row = promptForRow()
+                row = promptForInt("Enter row: ")
             }
             col := 0
             for col == 0 {
-                col = promptForCol()
+                col = promptForInt("Enter column: ")
             }
             piecePlaced = game.placePiece(row, col, game.currentMove)
         }
@@ -35,50 +35,24 @@ func main() {
 }
 
 func promptForBoardSize() int {
-    fmt.Printf("Board size is nxn, and must be odd. Enter n: ")
-    var inputtedBoardSize string
-    _, err := fmt.Scanf("%v", &inputtedBoardSize)
-    if err != nil {
-        log.Fatal(err)
-    }
-    boardSizeAsInt, err := strconv.ParseInt(inputtedBoardSize, 10, 8)
-    if err != nil {
-        fmt.Println("Error parsing input. Ensure board size is a valid integer.")
-        return int(0)
-    }
+    boardSizeAsInt := promptForInt("Board size is nxn, and must be odd. Enter n: ")
     findOdd := oddTester(int(boardSizeAsInt))
     return findOdd
-    
 }
 
-func promptForRow() int {
-    fmt.Printf("Enter row: ")
-    var inputtedRow string
-    _, err := fmt.Scanf("%v", &inputtedRow)
+func promptForInt(prompt string) int {
+    fmt.Printf(prompt)
+    var inputtedInt string
+    _, err := fmt.Scanf("%v", &inputtedInt)
     if err != nil {
         log.Fatal(err)
     }
-    rowAsInt, err := strconv.ParseInt(inputtedRow, 10, 8)
+    inputtedIntAsInt, err := strconv.ParseInt(inputtedInt, 10, 8)
     if err != nil {
-        fmt.Println("Error, please enter a valid integer.")
+        fmt.Println("Error parsing input. Enter a valid integer.")
         return int(0)
     }
-    return int(rowAsInt)
-}
-
-func promptForCol() int {
-    fmt.Printf("Enter col: ")
-    var inputtedCol string
-    _, err := fmt.Scanf("%v", &inputtedCol)
-    if err != nil {
-        log.Fatal(err)
-    }
-    colAsInt, err := strconv.ParseInt(inputtedCol, 10, 8)
-    if err != nil {
-        fmt.Println("Error, please enter a valid integer.")
-        return int(0)
-    }
-    return int(colAsInt)
+    return int(inputtedIntAsInt)
 }
 
 func oddTester(testInput int) int {
