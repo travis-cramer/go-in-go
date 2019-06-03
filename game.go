@@ -52,7 +52,6 @@ func (game *Game) addBoardStars() {
 func (game *Game) printGame() {
     fmt.Printf("current move: %v\n", game.currentMove)
 
-    // board with row numbers
     row := 1
     for i := range game.board {
         fmt.Printf("%v  %v\n", game.board[i], row)
@@ -60,7 +59,6 @@ func (game *Game) printGame() {
     }
     fmt.Printf("\n")
 
-    // column numbers
     for i := 1; i < row; i++ {
         iAsString := strconv.Itoa(i)
         fmt.Printf(" %v", iAsString[len(iAsString)-1:])
