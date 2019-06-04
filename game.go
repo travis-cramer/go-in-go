@@ -4,6 +4,7 @@ import (
     "fmt"
 )
 
+
 type Game struct {
     board [][]uint8
     currentPlayer Player
