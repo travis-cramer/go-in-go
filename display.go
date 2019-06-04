@@ -5,8 +5,9 @@ import (
 	"strconv"
 )
 
+
 func (game *Game) printGame() {
-	fmt.Printf("current move: %v\n", game.currentPlayer.toString())
+	fmt.Printf("\n" + "current move: %v\n", game.currentPlayer.toString())
 
 	row := 1
 	for i := range game.board {
