@@ -20,3 +20,15 @@ func TestPlacePiece(t *testing.T) {
         t.Errorf("piece on row 1 col 1 = %d; want %d", game.board[0][0], game.currentPlayer)
     }
 }
+
+func TestChangeTurn(t *testing.T) {
+    game := Game{currentPlayer: LIGHT}
+    game.changeTurn()
+    if game.currentPlayer != DARK {
+        t.Errorf("game.currentPlayer = %v; want %v\n", game.currentPlayer.toString(), DARK.toString())
+    }
+    game.changeTurn()
+    if game.currentPlayer != LIGHT {
+        t.Errorf("game.currentPlayer = %v; want %v\n", game.currentPlayer.toString(), LIGHT.toString())
+    }
+}

@@ -20,7 +20,7 @@ func NewGame(boardSize int) Game {
 }
 
 func (game *Game) changeTurn() {
-    if game.currentPlayer == LIGHT { game.currentPlayer = DARK }
+    if game.currentPlayer == LIGHT {game.currentPlayer = DARK } else
     if game.currentPlayer == DARK { game.currentPlayer = LIGHT }
 }
 
