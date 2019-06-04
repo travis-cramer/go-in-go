@@ -12,11 +12,8 @@ const (
 )
 
 func (player Player) toString() string {
-    if player == DARK {
-        return "dark"
-    } else if player == LIGHT {
-        return "light"
-    }
+    if player == DARK { return "dark" }
+    if player == LIGHT { return "light" }
     return "could not get player string"
 }
 
@@ -76,11 +73,8 @@ func (game *Game) printGame() {
 }
 
 func (game *Game) changeTurn() {
-    if game.currentPlayer == LIGHT {
-        game.currentPlayer = DARK
-    } else if game.currentPlayer == DARK {
-        game.currentPlayer = LIGHT
-    }
+    if game.currentPlayer == LIGHT { game.currentPlayer = DARK }
+    if game.currentPlayer == DARK { game.currentPlayer = LIGHT }
 }
 
 func (game *Game) placePiece(row int, col int, player Player) bool {
