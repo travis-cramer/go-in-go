@@ -5,7 +5,7 @@ import (
     "strconv"
 )
 
-type Player int
+type Player uint8
 const (
     DARK Player  = 1
     LIGHT Player = 2
