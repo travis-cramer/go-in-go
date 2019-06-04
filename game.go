@@ -5,15 +5,24 @@ import (
     "strconv"
 )
 
-type Player string
+type Player int
 const (
-    LIGHT Player = "light"
-    DARK  Player = "dark"
+    DARK Player  = 1
+    LIGHT Player = 2
 )
+
+func (player Player) toString() string {
+    if player == DARK {
+        return "dark"
+    } else if player == LIGHT {
+        return "light"
+    }
+    return "could not get player string"
+}
 
 type Game struct {
     board [][]uint8
-    currentMove Player
+    currentPlayer Player
     gameBoardSize int
 }
 
@@ -22,7 +31,7 @@ func NewGame(boardSize int) Game {
     for i := range board {
         board[i] = make([]uint8, boardSize)
     }
-    newGame := Game{board: board, currentMove: DARK, gameBoardSize: boardSize}
+    newGame := Game{board: board, currentPlayer: DARK, gameBoardSize: boardSize}
     return newGame
 }
 
@@ -50,7 +59,7 @@ func (game *Game) addBoardStars() {
 }
 
 func (game *Game) printGame() {
-    fmt.Printf("current move: %v\n", game.currentMove)
+    fmt.Printf("current move: %v\n", game.currentPlayer.toString())
 
     row := 1
     for i := range game.board {
@@ -67,10 +76,10 @@ func (game *Game) printGame() {
 }
 
 func (game *Game) changeTurn() {
-    if game.currentMove == LIGHT {
-        game.currentMove = DARK
-    } else if game.currentMove == DARK {
-        game.currentMove = LIGHT
+    if game.currentPlayer == LIGHT {
+        game.currentPlayer = DARK
+    } else if game.currentPlayer == DARK {
+        game.currentPlayer = LIGHT
     }
 }
 
@@ -78,14 +87,7 @@ func (game *Game) placePiece(row int, col int, player Player) bool {
     if (row > game.gameBoardSize || col > game.gameBoardSize) {
         fmt.Printf("Error, the row and column must be less than %v to fit on the game board. Please try again. \n", game.gameBoardSize)
         return false
-    } else {
-        if player == LIGHT {
-            game.board[row - 1][col - 1] = 1
-            return true
-        } else if player == DARK {
-            game.board[row - 1][col - 1] = 2
-            return true
-        }
     }
-    return false
+    game.board[row - 1][col - 1] = uint8(player)
+    return true
 }

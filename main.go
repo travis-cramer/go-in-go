@@ -27,7 +27,7 @@ func main() {
             for col == 0 {
                 col = promptForInt("Enter column: ")
             }
-            piecePlaced = game.placePiece(row, col, game.currentMove)
+            piecePlaced = game.placePiece(row, col, game.currentPlayer)
         }
         game.changeTurn()
         game.printGame()
