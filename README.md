@@ -4,11 +4,10 @@ A CLI version of the Ancient Chinese board game Go written in Golang
 # install and run
 The following assumes that you have your GOBIN setup and added to your PATH (see: https://golang.org/doc/code.html).
 
-Get all dependencies and any dependencies of dependencies:
+Get all dependencies and any dependencies of dependencies (as well as dependencies for tests):
 ```
-$ go get ./...
+$ go get -t ./...
 ```
-
 Install the binary to your GOBIN:
 ```
 $ go install
