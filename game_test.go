@@ -1,34 +1,37 @@
 package main
 
 import (
+    asserter "github.com/stretchr/testify/assert"
     "testing"
 )
 
-
 func TestNewGame(t *testing.T) {
+    assert := asserter.New(t)
+
     desiredBoardSize := 19
     game := NewGame(desiredBoardSize)
-    if game.gameBoardSize != desiredBoardSize {
-        t.Errorf("game.gameBoardSize = %d; want %d", game.gameBoardSize, desiredBoardSize)
-    }
+
+    assert.Equal(desiredBoardSize, game.gameBoardSize)
 }
 
 func TestPlacePiece(t *testing.T) {
+    assert := asserter.New(t)
+
     game := NewGame(19)
+
     game.placePiece(1, 1, game.currentPlayer)
-    if game.board[0][0] != uint8(game.currentPlayer) {
-        t.Errorf("piece on row 1 col 1 = %d; want %d", game.board[0][0], game.currentPlayer)
-    }
+    assert.Equal(uint8(game.currentPlayer), game.board[0][0])
 }
 
 func TestChangeTurn(t *testing.T) {
-    game := Game{currentPlayer: LIGHT}
+    assert := asserter.New(t)
+
+    game := NewGame(19)
+    game.currentPlayer = DARK
+
     game.changeTurn()
-    if game.currentPlayer != DARK {
-        t.Errorf("game.currentPlayer = %v; want %v\n", game.currentPlayer.toString(), DARK.toString())
-    }
+    assert.Equal(LIGHT, game.currentPlayer)
+
     game.changeTurn()
-    if game.currentPlayer != LIGHT {
-        t.Errorf("game.currentPlayer = %v; want %v\n", game.currentPlayer.toString(), LIGHT.toString())
-    }
+    assert.Equal(DARK, game.currentPlayer)
 }

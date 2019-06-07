@@ -2,15 +2,18 @@
 A CLI version of the Ancient Chinese board game Go written in Golang
 
 # install and run
-Assuming you have your $GOBIN environment variable setup (see: https://golang.org/doc/code.html),
+The following assumes that you have your GOBIN setup and added to your PATH (see: https://golang.org/doc/code.html).
 
-all you need to install go-in-go is (in the root directory of this repository):
+Get all dependencies and any dependencies of dependencies:
+```
+$ go get ./...
+```
 
+Install the binary to your GOBIN:
 ```
 $ go install
 ```
-and to run:
-
+Run the binary:
 ```
 $ go-in-go
 ```
