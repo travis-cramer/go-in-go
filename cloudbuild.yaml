@@ -1,4 +1,3 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
-  args: ['get','-t', './...']
-  env: ['GOPATH=/gopath']
+  args: ['env','GOPATH']
