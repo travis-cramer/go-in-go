@@ -1,4 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['install','.']
-  env: ['PROJECT_ROOT=hello']
+  env: ['PROJECT_ROOT=go-in-go']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['get', '-t', './...']
