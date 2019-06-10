@@ -44,9 +44,9 @@ func (game *Game) checkForCapturedPieces() bool {
 
 func (game *Game) checkForCapturedPiecesOfPlayer(player Player) bool {
     for i := 0; i < game.gameBoardSize; i++ {
-        for j := 0; i < game.gameBoardSize; j++ {
+        for j := 0; j < game.gameBoardSize; j++ {
             if game.board[i][j] == uint8(player) {
-                if game.checkIfHasLiberty(i, j, NewBoard(game.gameBoardSize)) {
+                if !game.checkIfHasLiberty(i, j, player, NewBoard(game.gameBoardSize)) {
                     return true
                 }
             }
@@ -65,8 +65,11 @@ func (game *Game) indexIsOnBoard(i int, j int) bool {
     return true
 }
 
-func (game *Game) checkIfHasLiberty(i int, j int, alreadyVisited [][]uint8) bool {
+func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited [][]uint8) bool {
     if !game.indexIsOnBoard(i, j) {
+        return false
+    }
+    if game.board[i][j] != uint8(player) {
         return false
     }
     if alreadyVisited[i][j] == 1 {
@@ -84,7 +87,7 @@ func (game *Game) checkIfHasLiberty(i int, j int, alreadyVisited [][]uint8) bool
     }
     // if this piece is connected to a piece that is touching an open point, then return true
     for _, index := range indexesOfAdjacentSpaces {
-        if game.checkIfHasLiberty(index[0], index[1], alreadyVisited) {
+        if game.checkIfHasLiberty(index[0], index[1], player, alreadyVisited) {
             return true
         }
     }

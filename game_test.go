@@ -12,6 +12,8 @@ func TestNewGame(t *testing.T) {
     game := NewGame(desiredBoardSize)
 
     assert.Equal(desiredBoardSize, game.gameBoardSize)
+    assert.Equal(desiredBoardSize, len(game.board))
+    assert.Equal(desiredBoardSize, len(game.board[0]))
 }
 
 func TestPlacePiece(t *testing.T) {
@@ -41,9 +43,9 @@ func TestCheckForCapturedPieces(t *testing.T) {
 
     game := NewGame(19)
 
-    game.placePiece(1, 1, game.currentPlayer)
-    game.placePiece(1, 2, game.currentPlayer.opposingPlayer())
-    game.placePiece(2, 1, game.currentPlayer.opposingPlayer())
+    game.placePiece(1, 1, game.currentPlayer.opposingPlayer())
+    game.placePiece(1, 2, game.currentPlayer)
+    game.placePiece(2, 1, game.currentPlayer)
 
     got := game.checkForCapturedPieces()
 
