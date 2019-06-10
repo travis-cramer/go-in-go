@@ -35,3 +35,17 @@ func TestChangeTurn(t *testing.T) {
     game.changeTurn()
     assert.Equal(DARK, game.currentPlayer)
 }
+
+func TestCheckForCapturedPieces(t *testing.T) {
+    assert := asserter.New(t)
+
+    game := NewGame(19)
+
+    game.placePiece(1, 1, game.currentPlayer)
+    game.placePiece(1, 2, game.currentPlayer.opposingPlayer())
+    game.placePiece(2, 1, game.currentPlayer.opposingPlayer())
+
+    got := game.checkForCapturedPieces()
+
+    assert.Equal(true, got)
+}
