@@ -6,7 +6,6 @@ import (
     "strconv"
 )
 
-
 func main() {
     boardSize := 0
     for boardSize == 0 {
