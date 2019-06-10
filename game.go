@@ -4,7 +4,6 @@ import (
     "fmt"
 )
 
-
 type Game struct {
     board [][]uint8
     currentPlayer Player
@@ -25,7 +24,7 @@ func (game *Game) changeTurn() {
 }
 
 func (game *Game) placePiece(row int, col int, player Player) bool {
-    if (row > game.gameBoardSize || col > game.gameBoardSize) {
+    if row > game.gameBoardSize || col > game.gameBoardSize {
         fmt.Printf("Error, the row and column must be less than or equal to %v to fit on the game board. Please try again.\n", game.gameBoardSize)
         return false
     }

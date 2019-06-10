@@ -1,6 +1,5 @@
 package main
 
-
 type Player uint8
 const (
 	DARK  Player = 1

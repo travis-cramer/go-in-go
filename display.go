@@ -5,7 +5,6 @@ import (
 	"strconv"
 )
 
-
 func (game *Game) printGame() {
 	fmt.Printf("\n" + "current move: %v\n", game.currentPlayer.toString())
 
@@ -27,13 +26,13 @@ func (game *Game) addBoardStars() {
 	center := game.gameBoardSize / 2
 	if game.gameBoardSize < 12 {
 		game.board [center][center] = 8
-	} else if (game.gameBoardSize > 12 && game.gameBoardSize < 18) {
+	} else if game.gameBoardSize > 12 && game.gameBoardSize < 18 {
 		game.board [3][3] = 8
 		game.board [3][game.gameBoardSize - 4] = 8
 		game.board [game.gameBoardSize - 4][3] = 8
 		game.board [game.gameBoardSize - 4][game.gameBoardSize - 4] = 8
 		game.board [center][center] = 8
-	} else if (game.gameBoardSize > 18) {
+	} else if game.gameBoardSize > 18 {
 		game.board [3][3] = 8
 		game.board [3][center] = 8
 		game.board [3][game.gameBoardSize - 4] = 8
