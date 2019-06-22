@@ -38,16 +38,22 @@ func TestChangeTurn(t *testing.T) {
     assert.Equal(DARK, game.currentPlayer)
 }
 
-func TestCheckForCapturedPieces(t *testing.T) {
+func TestCheckForAndRemoveCapturedPieces(t *testing.T) {
     assert := asserter.New(t)
 
     game := NewGame(19)
 
-    game.placePiece(1, 1, game.currentPlayer.opposingPlayer())
-    game.placePiece(1, 2, game.currentPlayer)
-    game.placePiece(2, 1, game.currentPlayer)
+    game.board[0][0] = uint8(game.currentPlayer.opposingPlayer())
+    got := game.checkForAndRemoveCapturedPieces()
+    assert.Equal(false, got)
 
-    got := game.checkForCapturedPieces()
+    game.board[0][1] = uint8(game.currentPlayer)
+    got = game.checkForAndRemoveCapturedPieces()
+    assert.Equal(false, got)
 
+    game.board[1][0] = uint8(game.currentPlayer)
+    got = game.checkForAndRemoveCapturedPieces()
     assert.Equal(true, got)
+
+    assert.Equal(uint8(0), game.board[0][0])
 }
