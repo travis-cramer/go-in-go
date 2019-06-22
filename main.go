@@ -12,26 +12,7 @@ func main() {
         boardSize = promptForBoardSize()
     }
     game := NewGame(boardSize)
-    game.addBoardStars()
-    game.printGame()
-
-    gameOn := 1
-    for gameOn == 1 {
-        piecePlaced := false
-        for piecePlaced == false {
-            row := 0
-            for row == 0 {
-                row = promptForInt("Enter row: ")
-            }
-            col := 0
-            for col == 0 {
-                col = promptForInt("Enter column: ")
-            }
-            piecePlaced = game.placePiece(row, col, game.currentPlayer)
-        }
-        game.changeTurn()
-        game.printGame()
-    }
+    game.play()
 }
 
 func promptForBoardSize() int {

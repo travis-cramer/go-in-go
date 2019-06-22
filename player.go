@@ -6,6 +6,13 @@ const (
 	LIGHT Player = 2
 )
 
+func PlayerFromInt(int uint8) Player {
+	if uint8(LIGHT) == int {
+		return LIGHT
+	}
+	return DARK
+}
+
 func (player Player) toString() string {
 	if player == DARK { return "dark" }
 	if player == LIGHT { return "light" }
