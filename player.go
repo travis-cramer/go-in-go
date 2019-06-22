@@ -1,8 +1,6 @@
 package main
 
-import (
-	"errors"
-)
+import "errors"
 
 type Player uint8
 const (
