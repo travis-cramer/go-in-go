@@ -1,5 +1,7 @@
 package main
 
+import "log"
+
 func (game *Game) checkForAndRemoveCapturedPiecesOfPlayer(player Player) bool {
 	for i := 0; i < game.gameBoardSize; i++ {
 		for j := 0; j < game.gameBoardSize; j++ {
@@ -44,7 +46,10 @@ func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited 
 }
 
 func (game *Game) removePieceAndAllConnectedPieces(i int, j int) {
-	player := PlayerFromInt(game.board[i][j])
+	player, err := PlayerFromInt(game.board[i][j])
+	if err != nil {
+		log.Fatal(err)
+	}
 	game.removePieceAndAllConnectedPiecesHelper(i, j, player)
 }
 

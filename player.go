@@ -1,16 +1,23 @@
 package main
 
+import (
+	"errors"
+)
+
 type Player uint8
 const (
 	DARK  Player = 1
 	LIGHT Player = 2
 )
 
-func PlayerFromInt(int uint8) Player {
-	if uint8(LIGHT) == int {
-		return LIGHT
+func PlayerFromInt(i uint8) (Player, error) {
+	if uint8(DARK) == i {
+		return DARK, nil
 	}
-	return DARK
+	if uint8(LIGHT) == i {
+		return LIGHT, nil
+	}
+	return DARK, errors.New("cannot get player from int")
 }
 
 func (player Player) toString() string {
