@@ -24,3 +24,11 @@ In the root directory of the repository, run
 $ go test
 ```
 to run our test suite. See: https://golang.org/pkg/testing/
+
+# todo
+Things that we still want to get done
+* Implement how to end the game and how to calculate the winner
+* Building it out into a web app and browser game
+    * Hovering over a square shows a greyed out piece
+* Use a redis instance to remember game state
+* Dockerize it all
