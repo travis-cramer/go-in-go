@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func (game *Game) play() {
 	game.addBoardStars()
@@ -26,12 +28,12 @@ func (game *Game) play() {
 }
 
 func (game *Game) placePiece(row int, col int, player Player) bool {
-	if !game.indexIsOnBoard(row - 1, col - 1) {
+	if !game.indexIsOnBoard(row-1, col-1) {
 		fmt.Printf("Off the game board.\nTry again.\n")
 		return false
 	}
 
-	game.board[row - 1][col - 1] = uint8(player)
+	game.board[row-1][col-1] = uint8(player)
 
 	piecesCaptured := game.checkForAndRemoveCapturedPieces()
 	if !piecesCaptured {
@@ -45,8 +47,11 @@ func (game *Game) placePiece(row int, col int, player Player) bool {
 }
 
 func (game *Game) changeTurn() {
-	if game.currentPlayer == LIGHT { game.currentPlayer = DARK } else
-	if game.currentPlayer == DARK { game.currentPlayer = LIGHT }
+	if game.currentPlayer == LIGHT {
+		game.currentPlayer = DARK
+	} else if game.currentPlayer == DARK {
+		game.currentPlayer = LIGHT
+	}
 }
 
 func (game *Game) indexIsOnBoard(i int, j int) bool {

@@ -3,6 +3,7 @@ package main
 import "errors"
 
 type Player uint8
+
 const (
 	DARK  Player = 1
 	LIGHT Player = 2
@@ -19,13 +20,21 @@ func PlayerFromInt(i uint8) (Player, error) {
 }
 
 func (player Player) toString() string {
-	if player == DARK { return "dark" }
-	if player == LIGHT { return "light" }
+	if player == DARK {
+		return "dark"
+	}
+	if player == LIGHT {
+		return "light"
+	}
 	return "could not get player string"
 }
 
 func (player Player) opposingPlayer() Player {
-	if player == DARK { return LIGHT }
-	if player == LIGHT { return DARK }
+	if player == DARK {
+		return LIGHT
+	}
+	if player == LIGHT {
+		return DARK
+	}
 	return DARK
 }

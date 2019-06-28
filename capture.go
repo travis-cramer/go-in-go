@@ -60,7 +60,7 @@ func (game *Game) removePieceAndAllConnectedPiecesHelper(i int, j int, player Pl
 	if game.board[i][j] != uint8(player) {
 		return
 	}
-	game.board[i][j] = 0  // remove piece
+	game.board[i][j] = 0 // remove piece
 
 	indexesOfAdjacentSpaces := [4][2]int{{i - 1, j}, {i + 1, j}, {i, j - 1}, {i, j + 1}}
 
