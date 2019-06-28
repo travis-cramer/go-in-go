@@ -22,7 +22,7 @@ func TestPlacePiece(t *testing.T) {
 	game := NewGame(19)
 
 	game.placePiece(1, 1, game.currentPlayer)
-	assert.Equal(uint8(game.currentPlayer), game.board[0][10])
+	assert.Equal(uint8(game.currentPlayer), game.board[0][0])
 }
 
 func TestChangeTurn(t *testing.T) {
