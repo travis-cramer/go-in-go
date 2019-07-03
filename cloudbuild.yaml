@@ -4,12 +4,12 @@ steps:
   args: ['get', '-t', './...']
   env: ['PROJECT_ROOT=go-in-go']
 
-- id: 'Run Test Suite'
-  name: 'gcr.io/cloud-builders/go'
-  args: ['test']
-  env: ['PROJECT_ROOT=go-in-go']
-
-- id: 'Install Binary'
+- id: 'Build'
   name: 'gcr.io/cloud-builders/go'
   args: ['install','.']
+  env: ['PROJECT_ROOT=go-in-go']
+
+- id: 'Run Tests'
+  name: 'gcr.io/cloud-builders/go'
+  args: ['test']
   env: ['PROJECT_ROOT=go-in-go']
