@@ -1,5 +1,5 @@
 # go-in-go
-A CLI version of the Ancient Chinese board game Go written in Golang
+The Ancient Chinese board game Go written in Go.
 
 # install and run
 The following assumes that you have the basics of your go workspace setup (see: https://golang.org/doc/code.html).
