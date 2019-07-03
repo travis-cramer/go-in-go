@@ -22,6 +22,7 @@ You have the option to either run the CLI application or start the web API:
 ```
 $ go-in-go -cli
 ```
+or
 ```
 $ go-in-go -api
 ```
