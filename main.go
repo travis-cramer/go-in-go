@@ -1,12 +1,25 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"strconv"
 )
 
 func main() {
+	cliPtr := flag.Bool("cli", true, "play on cli or start api?")
+	apiPtr := flag.Bool("api", false, "play on cli or start api?")
+	flag.Parse()
+	if *apiPtr || !*cliPtr {
+		startApi()
+	} else {
+		startCli()
+	}
+}
+
+func startCli() {
+	fmt.Println("Starting cli...")
 	boardSize := 0
 	for boardSize == 0 {
 		boardSize = promptForBoardSize()
@@ -14,6 +27,10 @@ func main() {
 	game := NewGame(boardSize)
 
 	game.play()
+}
+
+func startApi() {
+	fmt.Println("Starting api...")
 }
 
 func promptForBoardSize() int {
@@ -41,8 +58,7 @@ func oddTester(testInput int) int {
 	isOdd := testInput % 2
 	if isOdd == 1 {
 		return int(testInput)
-	} else {
-		fmt.Println("Error, the board must have an odd number of rows and columns.")
-		return int(0)
 	}
+	fmt.Println("Error, the board must have an odd number of rows and columns.")
+	return int(0)
 }

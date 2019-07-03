@@ -11,7 +11,7 @@ func TestNewGame(t *testing.T) {
 	desiredBoardSize := 19
 	game := NewGame(desiredBoardSize)
 
-	assert.Equal(desiredBoardSize, game.gameBoardSize)
+	assert.Equal(desiredBoardSize, game.boardSize)
 	assert.Equal(desiredBoardSize, len(game.board))
 	assert.Equal(desiredBoardSize, len(game.board[0]))
 }

@@ -3,10 +3,10 @@ package main
 import "log"
 
 func (game *Game) checkForAndRemoveCapturedPiecesOfPlayer(player Player) bool {
-	for i := 0; i < game.gameBoardSize; i++ {
-		for j := 0; j < game.gameBoardSize; j++ {
+	for i := 0; i < game.boardSize; i++ {
+		for j := 0; j < game.boardSize; j++ {
 			if game.board[i][j] == uint8(player) {
-				if !game.checkIfHasLiberty(i, j, player, NewBoard(game.gameBoardSize)) {
+				if !game.checkIfHasLiberty(i, j, player, NewBoard(game.boardSize)) {
 					game.removePieceAndAllConnectedPieces(i, j)
 					return true
 				}

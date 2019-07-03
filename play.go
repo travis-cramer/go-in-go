@@ -5,7 +5,6 @@ import (
 )
 
 func (game *Game) play() {
-	game.addBoardStars()
 	game.printGame()
 
 	game.gameOn = true
@@ -55,10 +54,10 @@ func (game *Game) changeTurn() {
 }
 
 func (game *Game) indexIsOnBoard(i int, j int) bool {
-	if i >= game.gameBoardSize || i < 0 {
+	if i >= game.boardSize || i < 0 {
 		return false
 	}
-	if j >= game.gameBoardSize || j < 0 {
+	if j >= game.boardSize || j < 0 {
 		return false
 	}
 	return true
