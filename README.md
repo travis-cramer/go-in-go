@@ -17,6 +17,16 @@ Run the binary:
 $ go-in-go
 ```
 
+# usage
+You have the option to either run the CLI application or start the web API:
+```
+$ go-in-go -cli
+```
+```
+$ go-in-go -api
+```
+The program defaults to running the CLI if no option is given.
+
 
 # testing
 In the root directory of the repository, run

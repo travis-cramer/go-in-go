@@ -12,13 +12,13 @@ func main() {
 	apiPtr := flag.Bool("api", false, "play on cli or start api?")
 	flag.Parse()
 	if *apiPtr || !*cliPtr {
-		startApi()
+		startAPI()
 	} else {
-		startCli()
+		startCLI()
 	}
 }
 
-func startCli() {
+func startCLI() {
 	fmt.Println("Starting cli...")
 	boardSize := 0
 	for boardSize == 0 {
@@ -29,7 +29,7 @@ func startCli() {
 	game.play()
 }
 
-func startApi() {
+func startAPI() {
 	fmt.Println("Starting api...")
 }
 
