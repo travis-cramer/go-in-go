@@ -11,9 +11,9 @@ func TestNewGame(t *testing.T) {
 	desiredBoardSize := 19
 	game := NewGame(desiredBoardSize)
 
-	assert.Equal(desiredBoardSize, game.boardSize)
-	assert.Equal(desiredBoardSize, len(game.board))
-	assert.Equal(desiredBoardSize, len(game.board[0]))
+	assert.Equal(desiredBoardSize, game.BoardSize)
+	assert.Equal(desiredBoardSize, len(game.Board))
+	assert.Equal(desiredBoardSize, len(game.Board[0]))
 }
 
 func TestPlacePiece(t *testing.T) {
@@ -21,59 +21,19 @@ func TestPlacePiece(t *testing.T) {
 
 	game := NewGame(19)
 
-	game.placePiece(1, 1, game.currentPlayer)
-	assert.Equal(uint8(game.currentPlayer), game.board[0][0])
+	game.placePiece(1, 1, game.CurrentPlayer)
+	assert.Equal(uint8(game.CurrentPlayer), game.Board[0][0])
 }
 
 func TestChangeTurn(t *testing.T) {
 	assert := asserter.New(t)
 
 	game := NewGame(19)
-	game.currentPlayer = DARK
+	game.CurrentPlayer = DARK
 
 	game.changeTurn()
-	assert.Equal(LIGHT, game.currentPlayer)
+	assert.Equal(LIGHT, game.CurrentPlayer)
 
 	game.changeTurn()
-	assert.Equal(DARK, game.currentPlayer)
-}
-
-func TestCheckForAndRemoveCapturedPieces(t *testing.T) {
-	assert := asserter.New(t)
-
-	game := NewGame(19)
-
-	game.board[0][0] = uint8(game.currentPlayer.opposingPlayer())
-	got := game.checkForAndRemoveCapturedPieces()
-	assert.Equal(false, got)
-
-	game.board[0][1] = uint8(game.currentPlayer)
-	got = game.checkForAndRemoveCapturedPieces()
-	assert.Equal(false, got)
-
-	game.board[1][0] = uint8(game.currentPlayer)
-	got = game.checkForAndRemoveCapturedPieces()
-	assert.Equal(true, got)
-
-	assert.Equal(uint8(0), game.board[0][0]) // the piece is removed
-}
-
-func TestCheckForAndRemoveSelfCapturedPieces(t *testing.T) {
-	assert := asserter.New(t)
-
-	game := NewGame(19)
-
-	game.board[0][1] = uint8(game.currentPlayer.opposingPlayer())
-	got := game.checkForAndRemoveSelfCapturedPieces()
-	assert.Equal(false, got)
-
-	game.board[1][0] = uint8(game.currentPlayer.opposingPlayer())
-	got = game.checkForAndRemoveSelfCapturedPieces()
-	assert.Equal(false, got)
-
-	game.board[0][0] = uint8(game.currentPlayer)
-	got = game.checkForAndRemoveSelfCapturedPieces()
-	assert.Equal(true, got)
-
-	assert.Equal(uint8(0), game.board[0][0]) // the piece is removed
+	assert.Equal(DARK, game.CurrentPlayer)
 }
