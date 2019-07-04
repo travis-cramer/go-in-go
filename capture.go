@@ -2,11 +2,20 @@ package main
 
 import "log"
 
+func (game *Game) checkForAndRemoveCapturedPieces() bool {
+	opposingPlayer := game.CurrentPlayer.opposingPlayer()
+	return game.checkForAndRemoveCapturedPiecesOfPlayer(opposingPlayer)
+}
+
+func (game *Game) checkForAndRemoveSelfCapturedPieces() bool {
+	return game.checkForAndRemoveCapturedPiecesOfPlayer(game.CurrentPlayer)
+}
+
 func (game *Game) checkForAndRemoveCapturedPiecesOfPlayer(player Player) bool {
-	for i := 0; i < game.boardSize; i++ {
-		for j := 0; j < game.boardSize; j++ {
-			if game.board[i][j] == uint8(player) {
-				if !game.checkIfHasLiberty(i, j, player, NewBoard(game.boardSize)) {
+	for i := 0; i < game.BoardSize; i++ {
+		for j := 0; j < game.BoardSize; j++ {
+			if game.Board[i][j] == uint8(player) {
+				if !game.checkIfHasLiberty(i, j, player, NewBoard(game.BoardSize)) {
 					game.removePieceAndAllConnectedPieces(i, j)
 					return true
 				}
@@ -20,7 +29,7 @@ func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited 
 	if !game.indexIsOnBoard(i, j) {
 		return false
 	}
-	if game.board[i][j] != uint8(player) {
+	if game.Board[i][j] != uint8(player) {
 		return false
 	}
 	if alreadyVisited[i][j] == 1 {
@@ -32,7 +41,7 @@ func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited 
 
 	// if this piece is touching an open point, then return true
 	for _, index := range indexesOfAdjacentSpaces {
-		if game.indexIsOnBoard(index[0], index[1]) && game.board[index[0]][index[1]] == 0 {
+		if game.indexIsOnBoard(index[0], index[1]) && game.Board[index[0]][index[1]] == 0 {
 			return true
 		}
 	}
@@ -46,7 +55,7 @@ func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited 
 }
 
 func (game *Game) removePieceAndAllConnectedPieces(i int, j int) {
-	player, err := PlayerFromInt(game.board[i][j])
+	player, err := PlayerFromInt(game.Board[i][j])
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,10 +66,10 @@ func (game *Game) removePieceAndAllConnectedPiecesHelper(i int, j int, player Pl
 	if !game.indexIsOnBoard(i, j) {
 		return
 	}
-	if game.board[i][j] != uint8(player) {
+	if game.Board[i][j] != uint8(player) {
 		return
 	}
-	game.board[i][j] = 0 // remove piece
+	game.Board[i][j] = 0 // remove piece
 
 	indexesOfAdjacentSpaces := [4][2]int{{i - 1, j}, {i + 1, j}, {i, j - 1}, {i, j + 1}}
 

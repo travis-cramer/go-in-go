@@ -31,6 +31,7 @@ func startCLI() {
 
 func startAPI() {
 	fmt.Println("Starting api...")
+	HandleRequests()
 }
 
 func promptForBoardSize() int {
