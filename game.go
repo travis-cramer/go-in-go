@@ -23,3 +23,8 @@ func NewBoard(boardSize int) [][]uint8 {
 	}
 	return board
 }
+
+func (game *Game) reset() {
+	game.Board = NewBoard(game.BoardSize)
+	game.CurrentPlayer = DARK
+}

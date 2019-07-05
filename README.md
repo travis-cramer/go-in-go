@@ -28,6 +28,8 @@ $ go-in-go -api
 ```
 The program defaults to running the CLI if no option is given.
 
+# web
+While running the API, open the `web/index.html` file in your browser to use the web interface.
 
 # testing
 In the root directory of the repository, run
