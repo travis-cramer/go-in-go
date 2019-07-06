@@ -11,9 +11,9 @@ func TestNewGame(t *testing.T) {
 	desiredBoardSize := 19
 	game := NewGame(desiredBoardSize)
 
-	assert.Equal(desiredBoardSize, game.BoardSize)
-	assert.Equal(desiredBoardSize, len(game.Board))
-	assert.Equal(desiredBoardSize, len(game.Board[0]))
+	assert.Equal(desiredBoardSize, game.boardSize)
+	assert.Equal(desiredBoardSize, len(game.board))
+	assert.Equal(desiredBoardSize, len(game.board[0]))
 }
 
 func TestPlacePiece(t *testing.T) {
@@ -21,19 +21,19 @@ func TestPlacePiece(t *testing.T) {
 
 	game := NewGame(19)
 
-	game.placePiece(1, 1, game.CurrentPlayer)
-	assert.Equal(uint8(game.CurrentPlayer), game.Board[0][0])
+	game.placePiece(1, 1, game.currentPlayer)
+	assert.Equal(uint8(game.currentPlayer), game.board[0][0])
 }
 
 func TestChangeTurn(t *testing.T) {
 	assert := asserter.New(t)
 
 	game := NewGame(19)
-	game.CurrentPlayer = DARK
+	game.currentPlayer = DARK
 
 	game.changeTurn()
-	assert.Equal(LIGHT, game.CurrentPlayer)
+	assert.Equal(LIGHT, game.currentPlayer)
 
 	game.changeTurn()
-	assert.Equal(DARK, game.CurrentPlayer)
+	assert.Equal(DARK, game.currentPlayer)
 }
