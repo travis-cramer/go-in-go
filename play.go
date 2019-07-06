@@ -19,7 +19,7 @@ func (game *Game) play() {
 			for col == 0 {
 				col = promptForInt("Enter column: ")
 			}
-			piecePlaced = game.placePiece(row, col, game.CurrentPlayer)
+			piecePlaced = game.placePiece(row, col, game.currentPlayer)
 		}
 		game.changeTurn()
 		game.printGame()
@@ -32,7 +32,7 @@ func (game *Game) placePiece(row int, col int, player Player) bool {
 		return false
 	}
 
-	game.Board[row-1][col-1] = player.toInt()
+	game.board[row-1][col-1] = player.toInt()
 
 	piecesCaptured := game.checkForAndRemoveCapturedPieces()
 	if !piecesCaptured {
@@ -46,18 +46,18 @@ func (game *Game) placePiece(row int, col int, player Player) bool {
 }
 
 func (game *Game) changeTurn() {
-	if game.CurrentPlayer == LIGHT {
-		game.CurrentPlayer = DARK
-	} else if game.CurrentPlayer == DARK {
-		game.CurrentPlayer = LIGHT
+	if game.currentPlayer == LIGHT {
+		game.currentPlayer = DARK
+	} else if game.currentPlayer == DARK {
+		game.currentPlayer = LIGHT
 	}
 }
 
 func (game *Game) indexIsOnBoard(i int, j int) bool {
-	if i >= game.BoardSize || i < 0 {
+	if i >= game.boardSize || i < 0 {
 		return false
 	}
-	if j >= game.BoardSize || j < 0 {
+	if j >= game.boardSize || j < 0 {
 		return false
 	}
 	return true

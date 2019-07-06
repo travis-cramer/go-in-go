@@ -9,16 +9,16 @@ type GameView struct {
 }
 
 func (game *Game) toGameView() GameView {
-	boardView := NewBoardView(game.BoardSize)
-	for i, _ := range game.Board {
-		for j, _ := range game.Board {
-			boardView[i][j] = int(game.Board[i][j])
+	boardView := NewBoardView(game.boardSize)
+	for i, _ := range game.board {
+		for j, _ := range game.board {
+			boardView[i][j] = int(game.board[i][j])
 		}
 	}
 	return GameView{
 		Board:         boardView,
-		BoardSize:     game.BoardSize,
-		CurrentPlayer: game.CurrentPlayer.toString(),
+		BoardSize:     game.boardSize,
+		CurrentPlayer: game.currentPlayer.toString(),
 		GameOn:        game.gameOn}
 }
 

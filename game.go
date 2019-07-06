@@ -2,16 +2,16 @@ package main
 
 // Game : representation of the current game state -- where pieces are, whose turn it is, etc.
 type Game struct {
-	Board         [][]uint8
-	BoardSize     int
-	CurrentPlayer Player
+	board         [][]uint8
+	boardSize     int
+	currentPlayer Player
 	gameOn        bool
 }
 
 // NewGame : creates a new game given a board size; chooses which player starts first and adds board stars
 func NewGame(boardSize int) Game {
 	board := NewBoard(boardSize)
-	game := Game{Board: board, CurrentPlayer: DARK, BoardSize: boardSize}
+	game := Game{board: board, currentPlayer: DARK, boardSize: boardSize}
 	game.addBoardStars()
 	return game
 }
@@ -25,6 +25,6 @@ func NewBoard(boardSize int) [][]uint8 {
 }
 
 func (game *Game) reset() {
-	game.Board = NewBoard(game.BoardSize)
-	game.CurrentPlayer = DARK
+	game.board = NewBoard(game.boardSize)
+	game.currentPlayer = DARK
 }

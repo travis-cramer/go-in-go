@@ -52,7 +52,7 @@ func placePiece(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	piecePlaced := game.placePiece(row, col, game.CurrentPlayer)
+	piecePlaced := game.placePiece(row, col, game.currentPlayer)
 	fmt.Println(piecePlaced)
 	if piecePlaced {
 		game.changeTurn()
