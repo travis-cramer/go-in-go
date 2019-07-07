@@ -3,7 +3,8 @@ game = {}
 function hello() {
     let myElem = document.getElementById("my-elem");
     myElem.innerHTML = "Go in Go!";
-	//pollForGame()
+	getGame();
+	pollForGame()
 }
 
 function calculateCellSize(boardSize) {
@@ -14,6 +15,7 @@ function calculateCellSize(boardSize) {
 }
 
 function hoverPiece(cell) {
+	cell.classList.add("hovering");
 	var cellImg = cell.firstChild;
 	if (game["CurrentPlayer"] === "dark") {
 		cellImg.src = "assets/black-circle.jpeg";
@@ -23,6 +25,7 @@ function hoverPiece(cell) {
 }
 
 function unHoverPiece(cell) {
+	cell.classList.remove("hovering");
 	var cellImg = cell.firstChild;
 	cellImg.src = "assets/blank-square.png";
 }
@@ -62,4 +65,42 @@ function drawBoard(board) {
 	}
 	tableDiv.innerHTML = ""; // removes the previous board
 	tableDiv.appendChild(tbl);
+}
+
+function updateBoard(board) {
+	var boardSize = board.length;
+
+	for (var i = 0; i < boardSize; i++) {
+		for (var j = 0; j < boardSize; j++) {
+			var cellId = i.toString() + "-" + j.toString();
+			var cell = document.getElementById(cellId);
+add
+			var cellImg = cell.firstChild;
+			if (board[i][j] === 1) {
+				cellImg.src = "assets/black-circle.jpeg";
+				removeMouseEvents(cell);
+			} else if (board[i][j] === 2) {
+				cellImg.src = "assets/white-circle.png";
+				removeMouseEvents(cell);
+			} else {
+				if (cell.classList.contains("hovering")) {
+					return
+				}
+				cellImg.src = "assets/blank-square.png";
+				addMouseEvents(cell);
+			}
+		}
+	}
+}
+
+function addMouseEvents(cell) {
+	cell.onmouseover = function() { hoverPiece(this) }
+	cell.onmouseout = function() { unHoverPiece(this) }
+	cell.onclick = function() { placePiece(this) }
+}
+
+function removeMouseEvents(cell) {
+	cell.onmouseover = function() {}
+	cell.onmouseout = function() {}
+	cell.onclick = function() {}
 }
