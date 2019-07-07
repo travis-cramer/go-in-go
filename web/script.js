@@ -74,7 +74,7 @@ function updateBoard(board) {
 		for (var j = 0; j < boardSize; j++) {
 			var cellId = i.toString() + "-" + j.toString();
 			var cell = document.getElementById(cellId);
-add
+
 			var cellImg = cell.firstChild;
 			if (board[i][j] === 1) {
 				cellImg.src = "assets/black-circle.jpeg";
