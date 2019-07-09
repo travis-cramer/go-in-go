@@ -12,17 +12,18 @@ func (game *Game) checkForAndRemoveSelfCapturedPieces() bool {
 }
 
 func (game *Game) checkForAndRemoveCapturedPiecesOfPlayer(player Player) bool {
+	var piecesWereRemoved bool
 	for i := 0; i < game.boardSize; i++ {
 		for j := 0; j < game.boardSize; j++ {
 			if game.board[i][j] == uint8(player) {
 				if !game.checkIfHasLiberty(i, j, player, NewBoard(game.boardSize)) {
 					game.removePieceAndAllConnectedPieces(i, j)
-					return true
+					piecesWereRemoved = true
 				}
 			}
 		}
 	}
-	return false
+	return piecesWereRemoved
 }
 
 func (game *Game) checkIfHasLiberty(i int, j int, player Player, alreadyVisited [][]uint8) bool {
