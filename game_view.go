@@ -1,6 +1,6 @@
 package main
 
-// GameView : a public representation of a Game object -- board is of int (not uint8), current player is string (not Player nor uint8), etc.
+// GameView : a public representation of a Game object -- used for encoding the game object into JSON
 type GameView struct {
 	Board         [][]int
 	BoardSize     int

@@ -13,6 +13,7 @@ var games []Game
 func HandleRequests() {
 	setUpTestData()
 
+	http.Handle("/", http.FileServer(http.Dir("web/")))
 	http.HandleFunc("/games", getGame)
 	http.HandleFunc("/place_piece", placePiece)
 	http.HandleFunc("/reset_game", resetGame)
@@ -94,5 +95,6 @@ func getIntegerQueryParam(fieldName string, r *http.Request, w http.ResponseWrit
 
 func setUpTestData() {
 	game := NewGame(9)
+	game.gameOn = true
 	games = append(games, game)
 }
