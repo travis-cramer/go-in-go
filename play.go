@@ -37,7 +37,7 @@ func (game *Game) play() {
 	game.gameOver(game.board)
 }
 
-func (game *Game) placePiece(row int, col int, player Player) bool {
+func (game *Game) placePiece(col int, row int, player Player) bool {
 	if !game.indexIsOnBoard(row-1, col-1) {
 		fmt.Printf("Off the game board.\nTry again.\n")
 		return false
