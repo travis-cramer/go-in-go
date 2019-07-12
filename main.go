@@ -42,22 +42,22 @@ func promptForBoardSize() int {
 
 func promptForInt(prompt string) int {
 	fmt.Printf(prompt)
-	fmt.Println("Newline detection point 1.")
 	var inputtedInt string
-	fmt.Println("Newline detection point 2.")
 	_, err := fmt.Scanf("%v", &inputtedInt)	
 	if err != nil {
-		fmt.Println("Newline Scanf error.")
-		log.Fatal(err)
-	}
-	if inputtedInt == strconv.Quote("\n") {
-		fmt.Println("Newline correctly found.")
-		return int(-1)
+		if err.Error() == "unexpected Newline" {
+			return int(-1)
+		} else {
+			log.Fatal(err)
+		}
 	}
 	inputtedIntAsInt, err := strconv.ParseInt(inputtedInt, 10, 8)
 	if err != nil {
-		fmt.Println("Newline conversion error.")
 		fmt.Println("Error parsing input. Enter a valid integer.")
+		return int(0)
+	}
+	if inputtedIntAsInt < 0 {
+		fmt.Println("Please enter a postive integer.")
 		return int(0)
 	}
 	return int(inputtedIntAsInt)
