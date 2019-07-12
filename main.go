@@ -47,12 +47,15 @@ func promptForInt(prompt string) int {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if inputtedInt == strconv.Quote("\n") {
+		fmt.Println("Newline Detected.")
+		return int(-1)
+	}
 	inputtedIntAsInt, err := strconv.ParseInt(inputtedInt, 10, 8)
 	if err != nil {
 		fmt.Println("Error parsing input. Enter a valid integer.")
-		return int(-1)
+		return int(0)
 	}
-	fmt.Println(string(inputtedIntAsInt))
 	return int(inputtedIntAsInt)
 }
 
