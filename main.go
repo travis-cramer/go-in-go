@@ -44,6 +44,7 @@ func promptForInt(prompt string) int {
 	fmt.Printf(prompt)
 	var inputtedInt string
 	_, err := fmt.Scanf("%v", &inputtedInt)
+	fmt.Println("Newline detection starting.")
 	if err != nil {
 		fmt.Println("Newline Detected.")
 		log.Fatal(err)
