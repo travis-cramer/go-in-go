@@ -43,8 +43,8 @@ func promptForBoardSize() int {
 func promptForInt(prompt string) int {
 	fmt.Printf(prompt)
 	var inputtedInt string
-	_, err := fmt.Scanf("%v", &inputtedInt)
 	fmt.Println("Newline detection starting.")
+	_, err := fmt.Scanf("%v", &inputtedInt)	
 	if err != nil {
 		fmt.Println("Newline Detected.")
 		log.Fatal(err)
