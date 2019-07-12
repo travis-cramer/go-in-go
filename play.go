@@ -83,7 +83,7 @@ func (game *Game) checkForPass(row int, col int, passedOnce bool) bool {
 		}
 	} else {
 		if (row == -1 && col == -1) {
-			fmt.Printf("Player %c has passed, Player %c's turn. \n", game.currentPlayer, game.currentPlayer.opposingPlayer())
+			fmt.Printf("Player %s has passed, Player %s's turn. \n", game.currentPlayer.toString(), game.currentPlayer.opposingPlayer().toString())
 			return true
 		}
 	}	
