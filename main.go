@@ -52,6 +52,7 @@ func promptForInt(prompt string) int {
 		fmt.Println("Error parsing input. Enter a valid integer.")
 		return int(-1)
 	}
+	fmt.Println(string(inputtedIntAsInt))
 	return int(inputtedIntAsInt)
 }
 
