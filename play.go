@@ -76,13 +76,13 @@ func (game *Game) indexIsOnBoard(i int, j int) bool {
 
 func (game *Game) checkForPass(row int, col int, passedOnce bool) bool {
 	if (passedOnce) {
-		if (row == 0 && col == 0) {
+		if (row == -1 && col == -1) {
 			fmt.Printf("Player %c has passed. The game is now over, and the tallying process will begin. \n", game.currentPlayer)
 			game.gameOn = false
 			return true
 		}
 	} else {
-		if (row == 0 && col == 0) {
+		if (row == -1 && col == -1) {
 			fmt.Printf("Player %c has passed, Player %c's turn. \n", game.currentPlayer, game.currentPlayer.opposingPlayer())
 			return true
 		}
