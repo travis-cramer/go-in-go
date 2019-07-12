@@ -16,7 +16,7 @@ func TestGameOver(t *testing.T) {
 	
 	game.gameOver(game.board)
 	p1, p2 := game.gameTally()
-	assert.Equal(1, p1) //test tallies
-	assert.Equal(1, p2)
+	assert.Equal(3, p1) //test tallies
+	assert.Equal(3, p2)
 	assert.Equal(uint8(5), uint8(game.board[10][10])) //test neutral territory
 }
