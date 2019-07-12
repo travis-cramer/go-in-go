@@ -44,19 +44,19 @@ func promptForInt(prompt string) int {
 	fmt.Printf(prompt)
 	fmt.Println("Newline detection point 1.")
 	var inputtedInt string
-	fmt.Println("Newline detection starting.")
+	fmt.Println("Newline detection point 2.")
 	_, err := fmt.Scanf("%v", &inputtedInt)	
 	if err != nil {
-		fmt.Println("Newline Detected.")
+		fmt.Println("Newline Scanf error.")
 		log.Fatal(err)
 	}
 	if inputtedInt == strconv.Quote("\n") {
-		fmt.Println("Newline Detected.")
+		fmt.Println("Newline correctly found.")
 		return int(-1)
 	}
 	inputtedIntAsInt, err := strconv.ParseInt(inputtedInt, 10, 8)
 	if err != nil {
-		fmt.Println("Newline Detected.")
+		fmt.Println("Newline conversion error.")
 		fmt.Println("Error parsing input. Enter a valid integer.")
 		return int(0)
 	}

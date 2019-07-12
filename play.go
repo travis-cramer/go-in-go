@@ -19,7 +19,6 @@ func (game *Game) play() {
 			col := 0
 			for col == 0 {
 				col = promptForInt("Enter column: ")
-				fmt.Println("Update Check 1")
 			}
 			playerPassed = game.checkForPass(row, col, playerPassed)
 			if (playerPassed == false) {
