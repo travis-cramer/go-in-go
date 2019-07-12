@@ -48,6 +48,7 @@ func promptForInt(prompt string) int {
 		if err.Error() == "unexpected Newline" {
 			return int(-1)
 		} else {
+			fmt.Println(err.Error())
 			log.Fatal(err)
 		}
 	}
