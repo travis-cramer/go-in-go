@@ -7,14 +7,17 @@ function pollForGame() {
 	}, 500) // in ms
 }
 
+function newGame(boardSize) {
+	var urlExtension = "/new_game?board_size=" + boardSize.toString();
+	baseRequestDraw(urlExtension);
+}
+
 function getGame() {
-	var xmlhttp = new XMLHttpRequest();
 	var urlExtension = "/games?game_id=0";
 	baseRequestDraw(urlExtension);
 }
 
 function updateGame() {
-	var xmlhttp = new XMLHttpRequest();
 	var urlExtension = "/games?game_id=0";
 	baseRequest(urlExtension);
 }
@@ -53,6 +56,7 @@ function baseRequestDraw(urlExtension) {
 
 	xmlhttp.onreadystatechange = function() {
 		if (this.status === 200 && this.readyState === XMLHttpRequest.DONE) {
+			console.log(this.responseText);
 			game = JSON.parse(this.responseText);
 			drawBoard(game["Board"]);
 		}
