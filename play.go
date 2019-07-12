@@ -10,6 +10,7 @@ func (game *Game) play() {
 	game.gameOn = true
 	for game.gameOn == true {
 		piecePlaced := false
+		playerPassed := false
 		for piecePlaced == false {
 			row := 0
 			for row == 0 {
@@ -19,11 +20,21 @@ func (game *Game) play() {
 			for col == 0 {
 				col = promptForInt("Enter column: ")
 			}
-			piecePlaced = game.placePiece(row, col, game.currentPlayer)
+			playerPassed = game.checkForPass(row, col, playerPassed)
+			if (playerPassed == false) {
+				piecePlaced = game.placePiece(row, col, game.currentPlayer)
+			}
+			if game.gameOn == false {
+				break
+			}
+		}
+		if game.gameOn == false {
+			break
 		}
 		game.changeTurn()
 		game.printGame()
 	}
+	game.gameOver(game.board)
 }
 
 func (game *Game) placePiece(row int, col int, player Player) bool {
@@ -61,4 +72,21 @@ func (game *Game) indexIsOnBoard(i int, j int) bool {
 		return false
 	}
 	return true
+}
+
+func (game *Game) checkForPass(row int, col int, passedOnce bool) bool {
+	if (passedOnce) {
+		if (row == 0 && col == 0) {
+			fmt.Printf("Player %c has passed. The game is now over, and the tallying process will begin. \n", game.currentPlayer)
+			game.gameOn = false
+			return true
+		}
+	} else {
+		if (row == 0 && col == 0) {
+			fmt.Printf("Player %c has passed, Player %c's turn. \n", game.currentPlayer, game.currentPlayer.opposingPlayer())
+			return true
+		}
+	}	
+
+	return false
 }

@@ -6,12 +6,14 @@ type Game struct {
 	boardSize     int
 	currentPlayer Player
 	gameOn        bool
+	p1PiecesLost  int
+	p2PiecesLost  int
 }
 
 // NewGame : creates a new game given a board size; chooses which player starts first and adds board stars
 func NewGame(boardSize int) Game {
 	board := NewBoard(boardSize)
-	game := Game{board: board, currentPlayer: DARK, boardSize: boardSize}
+	game := Game{board: board, currentPlayer: DARK, boardSize: boardSize, p1PiecesLost: 0, p2PiecesLost: 0}
 	game.addBoardStars()
 	return game
 }
