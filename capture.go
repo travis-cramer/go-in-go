@@ -71,10 +71,19 @@ func (game *Game) removePieceAndAllConnectedPiecesHelper(i int, j int, player Pl
 		return
 	}
 	game.board[i][j] = 0 // remove piece
-
+	game.incrimentLostPieces(player)
+	
 	indexesOfAdjacentSpaces := [4][2]int{{i - 1, j}, {i + 1, j}, {i, j - 1}, {i, j + 1}}
 
 	for _, index := range indexesOfAdjacentSpaces {
 		game.removePieceAndAllConnectedPiecesHelper(index[0], index[1], player)
+	}
+}
+
+func (game *Game) incrimentLostPieces(player Player) {
+	if uint8(player) == 1 {
+		game.p1PiecesLost += 1
+	} else if uint8(player) == 2 {
+		game.p2PiecesLost += 1
 	}
 }
