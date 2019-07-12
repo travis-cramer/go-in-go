@@ -77,6 +77,7 @@ func (area *Area) territoryLabeler (hiddenGameBoard [][] uint8, index1 int, inde
 	} else if (area.darkArea && area.lightArea) {
 		hiddenGameBoard [index1][index2] = NEUTRALTERRITORY.toInt()
 	} else if (!area.darkArea && !area.lightArea) {
+		hiddenGameBoard [index1][index2] = NEUTRALTERRITORY.toInt()
 		fmt.Printf("Error, a territory was not bordered by any pieces, and could not be tallied. \n")
 	}
 	for _, index := range indexesOfAdjacentSpaces {
