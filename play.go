@@ -12,12 +12,12 @@ func (game *Game) play() {
 		piecePlaced := false
 		playerPassed := false
 		for piecePlaced == false {
-			row := -1
-			for row == -1 {
+			row := 0
+			for row == 0 {
 				row = promptForInt("Enter row: ")
 			}
-			col := -1
-			for col == -1 {
+			col := 0
+			for col == 0 {
 				col = promptForInt("Enter column: ")
 			}
 			playerPassed = game.checkForPass(row, col, playerPassed)
