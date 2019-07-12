@@ -6,6 +6,7 @@ type GameView struct {
 	BoardSize     int
 	CurrentPlayer string
 	GameOn        bool
+	Chat          Chat
 }
 
 func (game *Game) toGameView() GameView {
@@ -19,7 +20,8 @@ func (game *Game) toGameView() GameView {
 		Board:         boardView,
 		BoardSize:     game.boardSize,
 		CurrentPlayer: game.currentPlayer.toString(),
-		GameOn:        game.gameOn}
+		GameOn:        game.gameOn,
+		Chat:          game.chat}
 }
 
 func NewBoardView(boardSize int) [][]int {

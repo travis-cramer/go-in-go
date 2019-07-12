@@ -10,14 +10,36 @@ import (
 
 var games []Game
 
-func HandleRequests() {
-	setUpTestData()
+type Chat struct {
+	Messages []Message
+}
 
+type Message struct {
+	Content string
+	Player  string
+}
+
+func HandleRequests() {
 	http.Handle("/", http.FileServer(http.Dir("web/")))
 	http.HandleFunc("/games", getGame)
+	http.HandleFunc("/new_game", newGame)
 	http.HandleFunc("/place_piece", placePiece)
 	http.HandleFunc("/reset_game", resetGame)
 	log.Fatal(http.ListenAndServe(":10000", nil))
+}
+
+func newGame(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	fmt.Println("request received")
+
+	boardSize := getIntegerQueryParam("board_size", r, w)
+
+	newGame := NewGame(boardSize)
+	newGame.gameOn = true
+	newGame.chat = Chat{Messages: []Message{Message{Content: "hello", Player: "light"}}}
+	games = append(games, newGame)
+
+	json.NewEncoder(w).Encode(games[0].toGameView())
 }
 
 func getGame(w http.ResponseWriter, r *http.Request) {
@@ -76,6 +98,7 @@ func resetGame(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(games[gameIdInt].toGameView())
 }
+
 func getIntegerQueryParam(fieldName string, r *http.Request, w http.ResponseWriter) int {
 	keys, ok := r.URL.Query()[fieldName]
 
@@ -91,10 +114,4 @@ func getIntegerQueryParam(fieldName string, r *http.Request, w http.ResponseWrit
 		return -1
 	}
 	return gameIdInt
-}
-
-func setUpTestData() {
-	game := NewGame(9)
-	game.gameOn = true
-	games = append(games, game)
 }

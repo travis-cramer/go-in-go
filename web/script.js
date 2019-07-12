@@ -3,13 +3,14 @@ game = {}
 function hello() {
     let myElem = document.getElementById("my-elem");
     myElem.innerHTML = "Go in Go!";
-	getGame();
+	boardSize = window.prompt("How big do you want your board?", "");
+	newGame(boardSize);
 	pollForGame()
 }
 
 function calculateCellSize(boardSize) {
 	// calculates how wide (in pixels) the squares should be based on the board size
-	var boardSizeInPx = 500;
+	var boardSizeInPx = 600;
 	var cellSizeInPx = boardSizeInPx / boardSize;
 	return Math.round(cellSizeInPx.toString()) + "px"
 }

@@ -6,6 +6,7 @@ type Game struct {
 	boardSize     int
 	currentPlayer Player
 	gameOn        bool
+	chat          Chat
 }
 
 // NewGame : creates a new game given a board size; chooses which player starts first and adds board stars
